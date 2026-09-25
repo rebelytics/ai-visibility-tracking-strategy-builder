@@ -1,7 +1,7 @@
 ---
-name: ai-visibility-tracking-strategy-builder
+name: "ai-visibility-tracking-strategy-builder"
 description: 'Build or refine an AI visibility tracking strategy — the prompt set, grouping structure, brand roster and reporting split that measure how a brand appears in ChatGPT, Gemini, Perplexity, AI Overviews and similar — on any AI visibility monitoring platform. Runs as an iterative loop (Intake → Strategy → Write → Analyse) with an optional stakeholder presentation once the strategy has stabilised. Load whenever the user mentions AI visibility, GEO (generative engine optimisation), AI brand monitoring, prompt tracking, "what prompts should we track", "how are we showing up in ChatGPT / Gemini / Perplexity", AI mention tracking, a prompt set for an AI monitoring tool, or a tracking strategy review. This is the platform-agnostic core of a skill family: load it together with the companion for the platform in use (Peec AI: `peec-ai-tracking-strategy-builder`; SISTRIX: `sistrix-tracking-strategy-builder`), or alone for any other tool.'
-version: 1.2.0
+version: 1.4.0
 license: CC-BY-4.0
 origin: https://github.com/rebelytics/ai-visibility-tracking-strategy-builder
 maintainer: Eoghan Henn / rebelytics (eoghan@rebelytics.com)
@@ -344,7 +344,19 @@ Slots are allocated based on data, not intuition. Demand signals
 AI-fanout patterns, observed AI citations, customer-voice logs) determine
 how many prompts a category deserves. Categories without external demand
 signals don't get slots just because the brand offers the product — they
-may be a content problem, not an AI visibility problem.
+may be a content problem, not an AI visibility problem. Demand decides
+depth, though, not presence: where the budget is being *sized* rather
+than spent, every product the brand sells keeps a two-prompt floor, so a
+coverage gap cannot masquerade as a visibility finding (§9.1.0).
+
+The converse also holds: every prompt is a claim that the brand could
+plausibly be the answer, so a prompt naming a service the brand does not
+offer is a structural zero, not a measurement — and that is checked
+against the brand's own catalogue for every prompt in the finished set,
+inherited ones included (§9.9, §15.4 gate 13). And the shares the
+strategy sets are filled as quotas and re-measured after every cut,
+because ranking a pool on value deletes the lowest-scoring instrument
+without leaving a trace (§9.1.4, §15.4 gate 12).
 
 ### 4.3 Automated sources first, user asks last
 
@@ -591,7 +603,10 @@ mechanics", the companion holds a part with the same number ("§9.3 — Peec
 implementation"). Read the core section first, then the companion part.
 Companions never restate a core rule; if a companion appears to contradict
 this skill, this skill wins for method and the companion wins for facts
-about the platform.
+about the platform. The same holds for enumerated lists: a companion
+points at the §15.4 validation gates by the core's gate number and never
+copies the list, so that a gate added here shows up in the companion as
+a missing number rather than a silent omission.
 
 ---
 
@@ -693,7 +708,7 @@ failure shape as skipping an intake ring (§3.8).
 |---|---|---|
 | `references/data-persistence.md` | §7 | When initialising or resuming the project workspace, and before writing any loop artefact |
 | `references/phase-a-intake.md` | §3.8–3.10, §8 (incl. §8.5 data-source handling) | In full, at the start of every Intake step, before asking the user for anything |
-| `references/phase-a-strategy.md` | §9–§10 (incl. §9.9 prompt authoring, the disambiguation pass and the trust / reviews block) | Before drafting or revising any strategy recommendation, before authoring or delegating prompts, before finalising any prompt set, and before sign-off |
+| `references/phase-a-strategy.md` | §9–§10 (incl. §9.1.0 allocation direction, §9.1.4 fill-by-quota and the answer-shape classifier, §9.9 prompt authoring, product detectors, the disambiguation pass and the trust / reviews block) | Before drafting or revising any strategy recommendation, before authoring or delegating prompts, before finalising any prompt set, and before sign-off |
 | `references/allocate.py` | §9.1.2 | Run (do not re-derive) whenever the damped revenue-share method leads the allocation |
 | `references/pattern-library.md` | §11 | Skim its contents list during every Strategy and every Analyse step; read any pattern whose symptom matches |
 | `references/write-and-analyse-principles.md` | §12–§13 (principles, incl. §12.7 measurement windows and run frequency, §13.5 per-answer share) | Before the first Write of a loop and at the start of every Analyse step, and before quoting any visibility figure or making any run-frequency decision — then load the companion's §12/§13 for the platform mechanics |

@@ -893,6 +893,11 @@ Capture from the existing data:
 
 - **Baseline metrics** — current visibility scores, presence rates,
   trend direction.
+- **Coverage baseline** — how many of the brand's products or services
+  the existing set already names, counted with the product detectors of
+  §9.9 (one per product, word-bounded, case-sensitive for short
+  acronyms) and never by token overlap: a prompt covers a product only
+  if its text names it, and a loose count runs high (§15.4 gate 14).
 - **Competitor gaps** — which competitors appear in AI responses that
   the brand doesn't.
 - **Citation sources** — where AI models pull information from (the

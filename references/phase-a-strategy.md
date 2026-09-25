@@ -8,9 +8,11 @@ Part of the **ai-visibility-tracking-strategy-builder** skill (CC BY 4.0 — Eog
 
 - 9 Phase A — Strategy (hard gate, recommendation block format)
 - 9.1 Prompt volume split (load-bearing recommendation) — three complementary allocation methods
+  - 9.1.0 Direction first — budget fixed, or budget being sized (the product coverage floor)
   - 9.1.1 Search-volume axis (orthogonal to the funnel split)
   - 9.1.2 Damped revenue-share weighting (across containers)
   - 9.1.3 Breadth across intent clusters (within a container)
+  - 9.1.4 Filling a budget from a larger pool — composition is a constraint (incl. the expected-answer-shape classifier)
   - On total size
 - 9.2 Country and market scope
   - Cross-market divergence check (before reusing any allocation)
@@ -31,7 +33,8 @@ Part of the **ai-visibility-tracking-strategy-builder** skill (CC BY 4.0 — Eog
 - 9.8 Strategy sign-off
 - 9.9 Prompt authoring
   - Prompt patterns
-  - Authoring rules
+  - Authoring rules (incl. service grounding of every named service, template kind, per-language validation)
+  - Product detectors (a prompt covers a product only if it names it)
   - Disambiguation pass (mandatory before a set is finalised)
   - Audience-exploration probes (the mirror of owned-territory)
   - Trust / reviews probes (branded, for source diagnosis)
@@ -85,6 +88,51 @@ produced:
 
 The search-volume axis (§9.1.1) is orthogonal to all three: it
 describes the mix *within* whatever the other methods produced.
+
+#### 9.1.0 Direction first — is the budget fixed, or is the budget being sized?
+
+Every method in this section distributes a budget, so reaching for one
+silently assumes the budget is an input. Often it is the question. An
+agency working to a client's fixed plan tier and a brand deciding which
+tier to buy produce different artefacts from identical intake data, and
+nothing in the data says which engagement this is. Settle it in **one
+question to the user before any allocation runs** — *"Is the budget
+fixed, or are we working out what budget you need?"* — and record the
+answer in the sign-off (§9.8).
+
+**Budget fixed → distribute it.** The methods below apply as written.
+One mandatory addition: the sign-off reports **how many of the brand's
+products or services the budget leaves unmeasurable** — the products
+that end with no prompt at all — so the trade-off is visible rather
+than buried in the allocation. A product with no prompt returns no
+signal, and in the reporting that is indistinguishable from a product
+the brand is invisible for: a coverage gap presents as a visibility
+finding, and it is least visible precisely where it is largest.
+
+**Budget being sized → coverage is the constraint, the budget is the
+output.** Build a **product coverage grid** — every product or service
+the brand actually sells (the catalogue baseline of §8.3.2, grounded per
+§9.9), by market — and give every cell a **floor of two prompts**: one
+asking who provides it (provider-selection shape) and one asking how to
+obtain it (how-to shape). The floor is two because below two prompts a
+product cannot distinguish a visibility problem from a coverage gap — a
+single prompt at zero is either. Demand then decides which products are
+**promoted to depth** (more prompts and more instruments inside the
+product, sized by §9.1.1–9.1.3), and the sum is the budget to propose.
+Demand sets depth; it never sets presence.
+
+**Thin demand in a niche catalogue is not evidence of absent demand.**
+In a specialised B2B catalogue most products have no reliable search
+volume, and a platform's own per-prompt volume field is conditioned on
+the prompts that already exist — a product nobody tracks looks like a
+product nobody wants. Applied as written to such a catalogue, the damped
+method can leave most of the brand's products out of the set — the
+opposite of what a brand whose concern is incomplete coverage asked
+for. This does not overturn §4.2: demand
+still decides every slot above the floor, and in the fixed-budget
+direction it decides the whole allocation. What it may not do is remove
+a product the brand sells from the measurement while the budget is still
+being decided.
 
 > **Recommended:** 50% discovery, 30% consideration, 15% comparison,
 > 5% branded reputation monitoring. Tag each prompt with its funnel
@@ -236,6 +284,74 @@ before these percentages are applied — the four shares then divide what
 remains. Sizing it as a share would let it grow with the container,
 which is exactly the failure its cap exists to prevent.
 
+#### 9.1.4 Filling a budget from a larger pool — composition is a constraint
+
+The methods above produce a composition: so many provider-selection
+prompts, so many how-to prompts whose value is the citation, a branded
+cohort of a given size, a funnel and a volume mix inside each. The set
+is then usually *filled* from a pool larger than the budget — parallel
+authors' batches, an inherited project being cut down (§10), a merged
+set with a ceiling. How that pool is reduced decides whether the
+composition survives.
+
+**Fill each band to its share first, then rank within the band.** A
+value ranking across the whole pool answers "which are the best N" and
+not "does the set still contain the mix the strategy said it would".
+It removes whatever it scores lowest wholesale — and the categories
+that score lowest on a commercial value score are precisely the ones
+the strategy had to argue for: the how-to prompts that carry the
+source-citation instrument, the diagnostic probes, the audience-
+exploration band. The failure shape: after a ranked cut, whole markets
+come out almost entirely provider-selection, and the instrument a
+citation-gap workstream depends on has almost nothing left to measure
+with. Every individual prompt is defensible and every count matches the
+budget; the missing instrument leaves no trace in the artefact. So:
+
+1. Take the specified composition as a **quota per band** — instrument
+   × market × container, plus whatever else the strategy states as a
+   proportion.
+2. Fill each band to its quota from the prompts eligible for that band,
+   ranking on value *within the band only*.
+3. Where a band's eligible pool is smaller than its quota, author into
+   it (§9.9) rather than letting a neighbouring band absorb the slots
+   — or, if the demand is genuinely absent, shrink the band and record
+   the change in the sign-off (§9.8), so the composition is revised on
+   purpose rather than lost by accident.
+4. After the fill — and after **every** later selection or
+   disposition pass — recompute the realised mix and compare it with
+   the specified one (§15.4 gate 12). A composition cannot be recovered
+   by inspecting the result; it has to be re-measured.
+
+**Classify the instrument by the head of the question.** The
+composition counts prompts by their expected answer shape —
+provider-selection ("which companies…", "who provides…", "best
+providers for…"), how-to ("how do I obtain / prepare for…"),
+definition ("what is X", "what does X mean") and the branded cohort —
+and the classifier reads the **head of the question first**, then the
+rest. A leading "What is X…" or "What does X mean…" is a definition
+whatever follows it: "What is X, and which companies need it?" defines
+the scheme and asks nobody who provides it, so it fills no
+provider-selection cell even though its trailing clause matches the
+provider-selection pattern. Pattern order that let the trailing clause
+win once filled three products' provider cells with definitions and left
+two dozen carried-over prompts in the wrong instrument (§10). Head the
+column **"expected answer shape"** in every artefact until the engines'
+answers have been checked against it (§13): the label is a prediction
+about the answer, not a property of the prompt, and naming it as a fact
+invites it to be trusted before it has been verified.
+
+**Cap head-to-head comparisons in the branded cohort.** "[Own brand] vs
+[competitor]" reads as commercial, so a value ranking favours it, and it
+is the least informative branded prompt: it measures neither how the
+engines describe the brand nor whose sources they draw on. Hold
+head-to-head comparisons to at most about a third of the branded cohort;
+the rest is reputation, trust / reviews (§9.9) and "what is / is [brand]
+good for" prompts, which are what the cohort exists to measure (§9.7).
+The competitive signal itself is not lost — the best-of lists
+(non-branded) and "[competitor] alternatives" prompts (other-brand) of
+§11.26 carry most of it, and the comparisons that remain inside the cap
+carry the rest.
+
 #### On total size
 
 Resist the instinct to fill whatever ceiling the user names. Every
@@ -299,16 +415,14 @@ than roughly a factor of two, the markets get **independent allocations**,
 not a translated one. Where the shares track closely, translation is
 defensible and the structural similarity is finally doing legitimate work.
 
-Observed cost of skipping it: two storefronts on one catalogue where the core
-product line ran at around two-thirds of classified demand in one market and
-around two-fifths in the other, while a secondary category ran at under a
-tenth against roughly a fifth — a difference of roughly 3× — and a third
-category at double; the largest revenue category in one market was only the
-third largest in the other. Inheriting the allocation would have pointed
-roughly a fifth of one market's prompt budget at its weakest category while
-starving its strongest. Record the check and its outcome in the sign-off
-(§9.8); a translated allocation with no divergence check behind it is an
-untested assumption wearing the clothes of a decision.
+The cost of skipping it: two storefronts on one catalogue can rank the same
+categories in a different order — a category that carries most of the demand
+in one market can be a minor one in the other, and the largest revenue
+category in one market only the third largest in the next. An inherited
+allocation then points a large share of one market's prompt budget at its
+weakest category while starving its strongest. Record the check and its
+outcome in the sign-off (§9.8); a translated allocation with no divergence
+check behind it is an untested assumption wearing the clothes of a decision.
 
 ### 9.3 Brand roster
 
@@ -625,10 +739,13 @@ How to arrive at the structure:
      §9.1.2 and the placement home for tracked-brand prompts (§9.7).
    - **Market/Industry** — broader market-level prompts that test
      general awareness.
-3. **Size by demand, prune by value.** Container sizes come from §9.1.
-   Where the tool enforces a fixed per-container limit instead, some
-   categories will need more aggressive pruning than others; prioritise
-   by commercial value, not by the number of possible topics.
+3. **Size by demand, prune by value — inside each band.** Container
+   sizes come from §9.1. Where the tool enforces a fixed per-container
+   limit instead, some categories will need more aggressive pruning
+   than others; prioritise by commercial value, not by the number of
+   possible topics — but rank within each instrument or funnel band,
+   never across the whole container, or the pruning deletes the
+   composition (§9.1.4).
 4. **Mirror across languages.** The same container structure should
    work across all markets, and **container names should be
    language-neutral and identical across markets** — the market
@@ -775,7 +892,9 @@ them inside a cohort they don't behave like.
 tracked-brand prompts; others need more. Optimise on what the brand
 actually needs to measure — but where the other-brand case is
 commercially large, size it deliberately rather than letting it fall out
-of the authoring.
+of the authoring. Whatever ratio is chosen is a composition, and is
+filled and re-measured as one (§9.1.4, §15.4 gate 12); inside the
+tracked-brand cohort, head-to-head comparisons stay under the §9.1.4 cap.
 
 Exactly one brand-mention tag must be applied at creation time (a prompt
 with no brand-mention tag is a configuration bug — it can't be filtered
@@ -811,10 +930,12 @@ What the sign-off must capture, regardless of format:
 
 - Loop number and date.
 - Each §9.1–9.7 recommendation as accepted or overridden, with the
-  override reasoning where applicable — including which §9.1 allocation
-  method led and why, the cross-market divergence check and its outcome
-  (§9.2), the two-or-three-tags decision (§9.7), and the engine set
-  (§9.6, from the companion).
+  override reasoning where applicable — including the allocation
+  direction (§9.1.0: budget fixed, with the count of products left
+  unmeasurable, or budget being sized, with the resulting total), which
+  §9.1 allocation method led and why, the cross-market divergence check
+  and its outcome (§9.2), the two-or-three-tags decision (§9.7), and
+  the engine set (§9.6, from the companion).
 - Prompt disposition decisions (existing projects) — see §10.
 - The implementation plan preview (what the Write sub-phase will do).
 - The measurement plan (earliest sensible next Analyse per §12.7).
@@ -916,6 +1037,44 @@ Rules worth keeping whatever the brand:
   from the brand's own data — site-search terms, the live brand
   subcategories, the grounding queries. Never invent them, and never
   assert what the brand stocks beyond what the data shows.
+- **Ground every named offering in the brand's catalogue.** A prompt
+  that names a product, product line, service, programme or standard
+  is a claim that the brand could plausibly be the answer. Verify the
+  claim against the brand's own pages (the §8.3.2 sitemap baseline,
+  fetched) before the prompt is written — not against what the industry
+  offers, and not from memory. Where the brand does not offer it,
+  either drop the prompt or keep it only in a non-commercial shape
+  ("how do I prepare for X", tagged as an owned-territory or diagnostic
+  probe); a provider-selection shape ("best providers for X", "who
+  should I hire for X") for a service the brand does not sell can only
+  surface competitors. The same check runs on every prompt carried over
+  from an existing project — inheriting is not grounding (§10, §15.4
+  gate 13).
+- **Match the template kind to the service actually sold, not to the
+  catalogue label.** When prompts are generated from templates per
+  product, the template kind for a product (purchase, subscription,
+  installation, repair, consultation, course, managed service…) is read
+  from what the brand delivers for that product on its own page, not
+  inferred from the catalogue heading it sits under. A software vendor
+  that lists an integration under "Products" but only documents it does
+  not sell it; a clinic that lists a treatment under "Services" but only
+  refers patients elsewhere does not provide it. "How much does
+  [product] cost" or "who installs [product]" templated onto such an
+  entry asks for something nobody sells — a wrong kind is a structural
+  zero exactly like a service the brand does not offer (§15.4 gate 13).
+- **Validate every generated prompt, in every language, before any
+  write.** Template substitution breaks grammar in ways a spot check in
+  one language never sees: in English the article before an initialism
+  follows its pronunciation, not its first letter ("an SME…" but "a
+  UK…"); a product name that already ends in its noun doubles it ("…
+  Analytics Platform platform providers"); a name carrying a leading
+  article or preposition produces "for of X" and "best the X"; a
+  parenthetical in the name lands inside the question. Run a
+  language-aware validator over the full set **per language** — not only
+  the language the author reads best (§15.4 gate 15). The failure shape:
+  one language has a validator, the other has none, and the unchecked
+  language's broken prompts go live on a platform where prompt text
+  cannot be edited after creation.
 - **Placement.** Tracked-brand prompts belong only in the Brand &
   Competitive container (§9.7); other-brand prompts go wherever they
   naturally sit.
@@ -925,6 +1084,33 @@ Rules worth keeping whatever the brand:
   domain-specific noun that has a mainstream homonym is checked, and the
   prompt either anchored with the product category or the drift accepted
   knowingly. See the sub-section below.
+
+#### Product detectors (a prompt covers a product only if it names it)
+
+A prompt covers a product **only if its text names that product**. Loose
+matching — any token of the product name appearing in the prompt —
+credits generic prompts to products they never mention: "how to choose a
+project management tool" is not a prompt about the brand's product
+called "Project Hub", "best providers in [country]" is not a prompt
+about a product whose name happens to contain that country, and a short
+acronym product name matches inside longer acronyms and inside ordinary
+words. The failure shape: loose matching credits dozens of generic
+prompts to product cells they never name, and the "products already
+tracked" baseline runs high before any authoring begins.
+
+So build **one detector per product** — a distinctive pattern for the
+product's name and its accepted variants, **word-bounded**, and
+**case-sensitive for short acronyms** (a two- or three-letter acronym in
+lower case is usually a word or a fragment of a longer name) — and use
+the **same detector for all three jobs**: matching carried-over prompts
+to product cells (§10), tagging prompts with their product (§9.4), and
+counting the coverage baseline (§8.5.6). Three detectors that disagree
+produce a grid, a tag set and a baseline that cannot be reconciled with
+each other. Before any write, **assert that every prompt authored or
+carried over for a product cell is detected as its own product, and as
+no other** (§15.4 gate 14): a product-cell prompt its own detector does
+not fire on is either mis-authored or mis-assigned, and either way the
+cell is empty.
 
 #### Disambiguation pass (mandatory before a set is finalised)
 
@@ -1126,6 +1312,35 @@ Germany" for a brand that ought to appear there but doesn't. Keeping
 it (vs deleting as noise) preserves the metric that tracks the gap
 closing. This is different from `diagnostic`, which flags prompts we
 expect to stay at zero.
+
+**An existing prompt is not grounded by having been tracked.** Before a
+prompt is placed in any Keep bucket, it passes the service-grounding
+check of §9.9 / §15.4 gate 13 exactly as a new prompt would: where it
+names a product, service, programme or standard the brand does not
+offer (verified against the brand's own pages, not recalled), a
+provider-selection shape is **Remove**, and an informational shape is
+**Keep as diagnostic** at most. Inherited prompts carry the implicit
+authority of already being in the project, and the authoring effort
+naturally goes to the gap-fills that had to be invented — so the
+carried-over share is the part of a merged set that goes unchecked
+unless the disposition pass checks it explicitly.
+
+**Carry-over into a product cell is by detector, not by overlap.** Where
+the strategy has a product coverage grid (§9.1.0), an existing prompt
+fills a product's cell only if that product's detector (§9.9) fires on
+its text **and** its expected answer shape (§9.1.4) matches the cell's
+instrument. A definition prompt does not fill a provider-selection cell
+however many "which companies" clauses it carries, and a prompt that
+merely shares a word with the product name fills no cell at all. An
+existing prompt that matches no cell is still dispositioned on its own
+merits in the table above; it just does not count as coverage.
+
+**Cutting to a budget is a fill, not a ranking.** Where the existing set
+is larger than the budget, the disposition pass fills each band of the
+specified composition to its share and ranks within the band (§9.1.4);
+a value ranking across the whole pool keeps the counts and silently
+deletes the lowest-scoring instrument. Recompute the realised mix after
+the pass (§15.4 gate 12).
 
 The disposition table is part of the Strategy sign-off (§9.8) — concrete
 and line-by-line when existing prompts are involved. Subsequent Analyse

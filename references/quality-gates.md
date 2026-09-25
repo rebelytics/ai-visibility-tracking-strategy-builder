@@ -81,6 +81,12 @@ practice into a visible artefact the user can inspect and challenge.
       "tell me"
 - [ ] Every Strategy recommendation (§9.1–9.7) has a Recommended,
       Reasoning, and Override block
+- [ ] **Allocation direction settled before any allocation ran**
+      (§9.1.0) — the user was asked whether the budget is fixed or being
+      sized; where fixed, the sign-off states how many of the brand's
+      products the budget leaves unmeasurable; where sized, every
+      product cell carries the two-prompt floor and the budget is the
+      output
 - [ ] Prompt disposition table (existing projects only) classifies
       every existing prompt into one of six buckets
 - [ ] Brand roster specifies owned domains, name variants (aliases),
@@ -306,11 +312,25 @@ several people (or parallel agent runs) authored batches, the
 merge-time pass is the only place the global invariants can be checked.
 It is not tidying.
 
+They also apply to the **whole finished set, not the part of it this
+session authored.** A merged set frequently contains prompts carried
+over from an existing project or an earlier delivery, and those arrive
+with the implicit authority of already being tracked. Inheriting feels
+like a smaller act than authoring, so the inherited share is the part
+that never gets checked — which is exactly why gates 12 and 13 name it.
+
 Automate whatever can be automated (counts, field integrity, tag
-conformance, the near-duplicate sweep, roster uniqueness) and read the
-rest. Run the gates in this order — the cheap structural checks first,
-so that the judgement-heavy ones run on a set that is already
-structurally sound.
+conformance, the near-duplicate sweep, roster uniqueness, the realised
+composition, the product-detector assertion, the language validator)
+and read the rest. Run the gates in this order — the cheap structural
+checks first, so that the judgement-heavy ones run on a set that is
+already structurally sound. Gates 12–15 are numbered in the order they
+were added, never re-slotted, so that the platform companions' gate
+references stay stable — companions point at these gates by number and
+never restate the list. Run gate 12 alongside gate 1 (it is a count
+check), gate 13 alongside gate 8 (it is a read-every-prompt check),
+gate 14 alongside gate 7 (it is the mapping gate 7 relies on) and gate
+15 alongside gate 2 (it is a text check).
 
 1. **Counts.** Every grouping (topic / brand / category /
    market) has exactly the number of prompts the approved allocation
@@ -367,7 +387,11 @@ structurally sound.
 7. **Coverage.** Map prompts back to the client's product/service
    pages (the sitemap baseline from §8.3.2 is the reference list). Are
    all major offerings represented? Are any significant product lines
-   missing?
+   missing? The mapping uses the product detectors of §9.9 (gate 14),
+   never token overlap — a prompt covers a product only if its text
+   names it. Where the allocation direction was "budget fixed"
+   (§9.1.0), the products this gate finds uncovered are the count the
+   sign-off reports as unmeasurable.
 
 8. **Commercial intent.** Re-read every prompt and ask: "Is this close
    enough to a purchasing decision?" Remove any that drift into purely
@@ -397,6 +421,83 @@ structurally sound.
     value vocabularies and defaulted timestamps are all format-level
     and correctable in one pass. None of them should block authoring.
 
+12. **Realised composition.** Wherever the strategy states a
+    composition — the instrument split of §9.1 (provider-selection /
+    how-to / branded cohort), the funnel or volume mix, an
+    other-brand share, a cap on an audience-exploration band —
+    recompute the mix the finished set actually has, per market and
+    per container, and compare it with the specified one. Run it
+    after *every* selection or disposition pass (§9.1.4, §10), not
+    only after authoring: a set cut to budget by ranking looks
+    well-chosen, hits every count exactly, and can still have lost an
+    entire instrument, because a ranking removes whatever it scores
+    lowest wholesale and leaves no trace in the result. Failure
+    shape: whole markets come out almost entirely provider-selection,
+    leaving the source-citation instrument almost nothing to measure
+    with. Within the branded cohort, count the
+    head-to-head competitor comparisons against the cap in §9.1.4 — a
+    cohort that is four or five comparisons out of five measures
+    neither reputation nor source authority. A band that is more
+    than a few points off its share is refilled from the eligible pool
+    by the fill-by-quota rule; it is not caveated.
+
+13. **Service grounding.** Every prompt that names a product, a
+    product line, a service, a programme or a standard must map to
+    something the brand actually offers, **verified against the
+    brand's own catalogue** — the sitemap baseline of §8.3.2, the live
+    service or product pages, fetched — not recalled and not inferred
+    from the industry. Every prompt in the set is a claim that the
+    brand could plausibly be the answer; where the claim is false the
+    prompt is not a neutral measurement but a structural zero that can
+    only ever surface competitors and drags the headline down for a
+    reason unrelated to visibility. Where a prompt fails, remove it or
+    reclassify it by intent: "how do I prepare for X" is legitimate
+    for a topic the brand sells nothing for and stays as an
+    owned-territory or diagnostic probe with the matching tag; "who
+    should I hire for X" / "best providers for X" is not, and goes.
+    Two further shapes fail this gate: a prompt asking how to obtain
+    something only a third party issues or grants, and a prompt naming
+    one market's regulator, retailer or programme inside another
+    market's set. **Apply the gate to carried-over prompts with the
+    same rigour as to new ones** — inherited prompts fail it as often
+    as new ones, and an authoring pass that grounds only the prompts it
+    wrote itself leaves the inherited share unchecked. **The check is
+    also of kind.** A product the brand does offer, phrased through a
+    template for a service kind the brand does not deliver for it — an
+    integration the brand documents but does not sell, templated as a
+    purchase ("how much does [product] cost") — fails here too. Read
+    each product's template kind off the product's own page, not off the
+    catalogue heading it sits under (§9.9).
+
+14. **Product detection.** Where the set has product cells (§9.1.0) or
+    product tags, one detector per product exists (§9.9: distinctive
+    pattern, word-bounded, case-sensitive for short acronyms), and the
+    **same** detector was used for carry-over matching (§10), product
+    tagging and the coverage baseline (§8.5.6). Assert, automatically,
+    that every prompt authored or carried over for a product cell is
+    detected as its own product and as no other; a product-cell prompt
+    its own detector does not fire on fails, and so does a prompt two
+    detectors claim. Failure shape without this gate: token-overlap
+    matching credits generic prompts to products they never name, and a
+    short acronym matches inside a longer one, so the "already tracked"
+    baseline is wrong before any authoring begins.
+
+15. **Language validation.** A language-aware validator has run over
+    **every** generated prompt in **every** language of the set, not
+    only the language the author reads best, and every hit has been
+    fixed in the text. Minimum checks per language: the article before
+    an initialism follows its pronunciation (English "an SME…" against
+    "a UK…"); no doubled noun where a product name already ends in the
+    template's noun; no stray article or preposition left by
+    substituting a product name that carries one ("for of X", "best the
+    X"); no parenthetical from a product name inside the question. Run
+    it before any write wave (§12) — on platforms where prompt text is
+    immutable after creation, a miss here is not an edit but a
+    retire-and-recreate, and the retired prompts stay in the project
+    (the companion says what that costs). Failure shape without this
+    gate: one language has a validator, the other has none, and the
+    unchecked language's broken prompts go live.
+
 #### Pre-delivery pre-flight
 
 Before the set is written to the platform or handed over, confirm:
@@ -405,12 +506,18 @@ Before the set is written to the platform or handed over, confirm:
    documentation or the project's own schema registry, not from
    memory or from this file.
 2. Allocation was derived per the allocation rules (§9.1), with the
-   navigational-traffic exclusion from the denominator and the
-   editorial redistribution both applied wherever the allocation was
-   demand-derived.
+   direction settled first (§9.1.0 — budget fixed, with the unmeasurable
+   product count reported, or budget sized from the two-prompt product
+   floor), and with the navigational-traffic exclusion from the
+   denominator and the editorial redistribution both applied wherever
+   the allocation was demand-derived.
 3. Cross-market divergence check (§9.2) run, and independent
    allocations used where it fired.
-4. All eleven §15.4 validation gates passed on the **merged** set.
+4. All fifteen §15.4 validation gates passed on the **merged** set —
+   including every prompt carried over from an existing project or an
+   earlier delivery, which is grounded (gate 13), matched to its product
+   cell by detector (gate 14) and counted into the realised composition
+   (gate 12) exactly like a newly authored one.
 5. Every unconfirmed import assumption written down in the handover,
    with its reversal cost.
 6. The branded-split and regulatory-refusal reporting instructions are
