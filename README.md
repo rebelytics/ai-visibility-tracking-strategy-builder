@@ -16,6 +16,7 @@ This is the **core**. Load it together with the companion for the platform in us
 
 - Peec AI — [`peec-ai-tracking-strategy-builder`](https://github.com/rebelytics/peec-ai-tracking-strategy-builder) (with [`peec-ai-mcp`](https://github.com/rebelytics/peec-ai-mcp) for tool mechanics)
 - SISTRIX — [`sistrix-tracking-strategy-builder`](https://github.com/rebelytics/sistrix-tracking-strategy-builder) (with [`sistrix-mcp`](https://github.com/rebelytics/sistrix-mcp))
+- searchVIU — [`searchviu-tracking-strategy-builder`](https://github.com/rebelytics/searchviu-tracking-strategy-builder) (with [`searchviu-mcp`](https://github.com/rebelytics/searchviu-mcp))
 
 For any other platform, run the core alone and treat its import or API contract as the companion's job. Section numbers are shared across the family: every "§N — <platform> implementation" part in a companion extends the core's §N.
 

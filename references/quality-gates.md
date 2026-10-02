@@ -434,7 +434,13 @@ gate 14 alongside gate 7 (it is the mapping gate 7 relies on) and gate
     lowest wholesale and leaves no trace in the result. Failure
     shape: whole markets come out almost entirely provider-selection,
     leaving the source-citation instrument almost nothing to measure
-    with. Within the branded cohort, count the
+    with. Count the instrument from each prompt's text with the
+    §9.1.4 head list — the provision heads and the buyer-subject heads
+    that only look like them — never from a platform's instrument,
+    intent or answer-type tags: a count over tags repeats whatever
+    misfiling set them, and every buyer-subject head filed as
+    provider-selection overstates the provider share. Within the
+    branded cohort, count the
     head-to-head competitor comparisons against the cap in §9.1.4 — a
     cohort that is four or five comparisons out of five measures
     neither reputation nor source authority. A band that is more
@@ -458,7 +464,12 @@ gate 14 alongside gate 7 (it is the mapping gate 7 relies on) and gate
     Two further shapes fail this gate: a prompt asking how to obtain
     something only a third party issues or grants, and a prompt naming
     one market's regulator, retailer or programme inside another
-    market's set. **Apply the gate to carried-over prompts with the
+    market's set. A third is a prompt for a product absent from its
+    own market's catalogue: where the site has language or country
+    versions, grounding runs per market against that market's
+    catalogue, and each absent product is a market exclusion in the
+    sign-off and an open question for the client (§9.8, §9.9).
+    **Apply the gate to carried-over prompts with the
     same rigour as to new ones** — inherited prompts fail it as often
     as new ones, and an authoring pass that grounds only the prompts it
     wrote itself leaves the inherited share unchecked. **The check is

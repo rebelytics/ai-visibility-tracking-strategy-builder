@@ -32,8 +32,8 @@ Part of the **ai-visibility-tracking-strategy-builder** skill (CC BY 4.0 — Eog
 - 9.7 Reporting KPI split — the brand-mention split
 - 9.8 Strategy sign-off
 - 9.9 Prompt authoring
-  - Prompt patterns
-  - Authoring rules (incl. service grounding of every named service, template kind, per-language validation)
+  - Prompt patterns (incl. when the Geographic pattern earns its slot)
+  - Authoring rules (incl. service grounding of every named service, per-market catalogue grounding, template kind, per-language validation)
   - Product detectors (a prompt covers a product only if it names it)
   - Disambiguation pass (mandatory before a set is finalised)
   - Audience-exploration probes (the mirror of owned-territory)
@@ -324,7 +324,7 @@ budget; the missing instrument leaves no trace in the artefact. So:
 
 **Classify the instrument by the head of the question.** The
 composition counts prompts by their expected answer shape —
-provider-selection ("which companies…", "who provides…", "best
+provider-selection ("which companies offer…", "who provides…", "best
 providers for…"), how-to ("how do I obtain / prepare for…"),
 definition ("what is X", "what does X mean") and the branded cohort —
 and the classifier reads the **head of the question first**, then the
@@ -334,7 +334,18 @@ the scheme and asks nobody who provides it, so it fills no
 provider-selection cell even though its trailing clause matches the
 provider-selection pattern. Pattern order that let the trailing clause
 win once filled three products' provider cells with definitions and left
-two dozen carried-over prompts in the wrong instrument (§10). Head the
+two dozen carried-over prompts in the wrong instrument (§10).
+**A provider-selection head names the provision, not just the question
+word.** List its heads positively: "which / who … offer, perform,
+provide, deliver…", "best … providers / suppliers / agencies", "which
+[provider] should I choose". Heads that start the same way but make the
+buyer the subject are how-to or definition: "which companies need X"
+(the answer lists kinds of buyer, not providers), "which requirements
+apply to X", "which countries require X", "which label, permit or
+certificate do I need". A classifier keyed on "which" or "who" alone
+files both kinds as provider-selection and overstates the provider
+share, so key it on the provision list, in every language of the set
+(§15.4 gate 12). Head the
 column **"expected answer shape"** in every artefact until the engines'
 answers have been checked against it (§13): the label is a prediction
 about the answer, not a property of the prompt, and naming it as a fact
@@ -937,6 +948,9 @@ What the sign-off must capture, regardless of format:
   and its outcome (§9.2), the two-or-three-tags decision (§9.7), and
   the engine set (§9.6, from the companion).
 - Prompt disposition decisions (existing projects) — see §10.
+- Market exclusions from per-market grounding (§9.9): each product
+  absent from a market's catalogue, with the open question it puts to
+  the client.
 - The implementation plan preview (what the Write sub-phase will do).
 - The measurement plan (earliest sensible next Analyse per §12.7).
 - Any content-strategy findings surfaced during intake that live
@@ -990,10 +1004,19 @@ These patterns recur across industries. Use them as building blocks:
 | Comparison | "[Brand] vs [Competitor]" | Competitive awareness |
 | Best-for | "Best [service] for [industry/size]" | Segmented commercial |
 | Provider-choice | "How to choose a [provider type]" | Decision-stage |
-| Geographic | "Best [service] in [location]" | Local intent |
+| Geographic | "Best [service] in [location]" | Local intent — only where the location is not the run's market (below) |
 | Duration | "How long does [service] take" | Buying timeline |
 | Requirements | "[Service] requirements" | Pre-purchase research |
 | Branded | "What is [brand]" | Brand awareness |
+
+**Use the Geographic pattern only where the location adds a dimension.**
+Write "Best [service] in [location]" where the location differs from the
+run's market — a traveller asking about tour operators in the country
+they are visiting — or where the platform does not geolocate runs by the
+market attribute. Otherwise the market attribute already places the
+question, and the prompt is a near-duplicate of its best-of twin. Fill
+that slot with a distinct buyer intent instead: a segment ("for a small
+business"), switching provider, or capacity and availability.
 
 #### Authoring rules
 
@@ -1050,6 +1073,15 @@ Rules worth keeping whatever the brand:
   surface competitors. The same check runs on every prompt carried over
   from an existing project — inheriting is not grounding (§10, §15.4
   gate 13).
+- **Ground per market, against that market's own catalogue.** Where the
+  site has language or country versions, read each version's product
+  index before a product is tracked in that market; the per-language
+  index is a free market-availability signal. A product absent from a
+  market's catalogue is recorded as a market exclusion in the sign-off
+  (§9.8) and listed as an open question for the client, not assumed
+  available. The failure shape: a set grounded against one language's
+  index and run in every market asks the other markets for products
+  their site does not offer (§15.4 gate 13).
 - **Match the template kind to the service actually sold, not to the
   catalogue label.** When prompts are generated from templates per
   product, the template kind for a product (purchase, subscription,
