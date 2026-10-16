@@ -671,6 +671,20 @@ intake / brand-context skill / conversation context):
   value, etc.
 - Assortment-brand handling (§4.6 / §9.2) — should stocked brands be
   tracked as roster brands, used as tags, or omitted entirely?
+- Competitor naming in prompts — may prompts name roster competitors
+  (head-to-head "[own brand] vs [competitor]", "[competitor]
+  alternatives", "considering [competitor], what else is there")?
+  Default: yes, within the head-to-head cap of §9.1.4. Record the
+  answer in the intake state (`prompts_may_name_competitors`, §7.2) and
+  in the strategy sign-off (§9.8). A "no" removes every prompt that
+  names a roster competitor, leaves the other-brand cohort (§4.10) to
+  assortment brands where there are any, and measures competitor
+  presence only where roster brands appear unprompted in the
+  non-branded cohort. Ask it rather than defaulting silently: whether
+  a prompt set may name third parties is a stakeholder decision, and
+  the failure shape of a silent default is a signed-off set that loses
+  its competitor-named prompts once the stakeholder sees them in the
+  first report, restarting the measurement window for the cohort.
 
 Each AskUserQuestion question should carry an explicit "Override this
 if…" slot per §4.5, so the user can divert from the recommended default

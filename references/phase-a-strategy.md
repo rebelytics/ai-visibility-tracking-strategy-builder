@@ -18,6 +18,7 @@ Part of the **ai-visibility-tracking-strategy-builder** skill (CC BY 4.0 — Eog
   - Cross-market divergence check (before reusing any allocation)
 - 9.3 Brand roster
   - Own-brand identity
+  - Alias pass (mandatory, every roster brand) and the post-first-run positive control
   - Brand classification step (mandatory, before proposing any roster)
   - Competitor selection
 - 9.4 Tag taxonomy
@@ -361,7 +362,10 @@ good for" prompts, which are what the cohort exists to measure (§9.7).
 The competitive signal itself is not lost — the best-of lists
 (non-branded) and "[competitor] alternatives" prompts (other-brand) of
 §11.26 carry most of it, and the comparisons that remain inside the cap
-carry the rest.
+carry the rest. The cap assumes the intake answer to "may prompts name
+competitors?" (§8.3.3b) was yes; on a "no" there is no comparison share
+to cap, and the branded cohort is reputation, trust / reviews and "what
+is [brand] good for" prompts only.
 
 #### On total size
 
@@ -472,6 +476,41 @@ check behind it is an untested assumption wearing the clothes of a decision.
 >   possible in regulated trademarks) → omit conflicted TLDs and note
 >   in the persisted intake state.
 
+#### Alias pass (mandatory, every roster brand)
+
+A recognition list is a string-matching contract with a matcher whose
+rules are usually undocumented: whether a platform matches
+case-insensitively, by substring or by whole word is rarely stated (the
+platform companion §9.3 says what is known for its tool), so the roster
+cannot rely on either. Enumerate every surface form the answer language
+can produce, for the own brand and for every competitor alike:
+
+- the official name and its short form or acronym;
+- hyphenation and spacing variants ("Acme-Coffee", "Acme Coffee",
+  "AcmeCoffee");
+- singular and plural where the name takes a plural;
+- declined forms where the prompt language inflects proper names
+  (German genitive and dative, Slavic and Finnic cases) — one alias per
+  form whose spelling differs from the nominative;
+- the name with and without its legal-form suffix (e.V., GmbH, Ltd,
+  Inc.);
+- the brand's names in every other language the prompt set runs in.
+
+Record the list per brand in the intake state (`aliases` in §7.2) and
+write it with the brand in the Write sub-phase (§12). The failure shape
+of a nominative-only roster: a brand named in every answer is recorded
+as absent wherever the answer inflects it, and a competitor's unlisted
+acronym surfaces as an entity of its own, carrying a visibility figure
+the competitor's row does not.
+
+**Positive control after the first run.** Before reading any mention
+figure, read the platform's entity or environment view for split
+spellings of roster brands — a roster brand listed twice under two forms
+is a missing alias — and confirm that every branded prompt returns the
+own brand as found. A branded prompt that names the brand and reports it
+absent is a roster defect, not a finding. §12.5 schedules the check;
+§15.2 gates the first Analyse on it.
+
 #### Brand classification step (mandatory, before proposing any roster)
 
 Before proposing a brand as a competitor, classify it against the
@@ -518,7 +557,8 @@ three-category shape from §4.6:
 > **Recommended:** For each of the 5 commercial competitors (not
 > assortment brands — see the classification step above), configure
 > the same identity shape as the own brand: name, all domains, all
-> name variants; pattern match only if needed. Select them as:
+> name variants from the alias pass above; pattern match only if
+> needed. Select them as:
 > - **Direct competitors** — companies offering the same products or
 >   services in the same markets (these should be the majority).
 > - **Aspirational competitors** — market leaders the brand wants to
@@ -947,6 +987,9 @@ What the sign-off must capture, regardless of format:
   §9.1 allocation method led and why, the cross-market divergence check
   and its outcome (§9.2), the two-or-three-tags decision (§9.7), and
   the engine set (§9.6, from the companion).
+- The intake answer on competitor naming (§8.3.3b) — whether prompts
+  may name roster competitors — so a later reader knows why the set
+  carries, or lacks, head-to-head and competitor-named prompts.
 - Prompt disposition decisions (existing projects) — see §10.
 - Market exclusions from per-market grounding (§9.9): each product
   absent from a market's catalogue, with the open question it puts to

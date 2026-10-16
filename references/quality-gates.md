@@ -139,6 +139,10 @@ practice into a visible artefact the user can inspect and challenge.
       pre-flight step; the sample-5-detected + 5-not-detected approach
       is understood, not skipped
 - [ ] Cohort maturity map is available (which prompts are how old)
+- [ ] **Roster positive control passed after the first run** (§9.3,
+      §12.5 step 5) — no roster brand split across spellings in the
+      entity view, every branded prompt returns the own brand as found;
+      a failure is a roster fix, not a finding
 - [ ] **First run of a new prompt set: the cited sources of the
       disambiguation-flagged prompts have been read** (§9.9) — drift is
       invisible in the mention rate and visible only in the sources

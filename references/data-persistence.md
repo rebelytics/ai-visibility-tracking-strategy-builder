@@ -103,6 +103,9 @@ sister_brands:
   - Northwind Tea
   - Northwind Brewing Equipment
 
+prompts_may_name_competitors: true   # §8.3.3b scoping answer; false removes
+                                     # every competitor-named prompt
+
 existing_taxonomy:
   source: supplied_csv
   provided_on: 2026-04-20

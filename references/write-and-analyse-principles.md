@@ -61,6 +61,12 @@ After the last wave completes:
    aliases / detection pattern; old brands absent.
 4. **Fresh aggregate report** — the post-write baseline for the next Analyse
    loop.
+5. **Roster positive control, after the first run** (§9.3) — it needs run
+   data, so it runs with whatever other post-first-run checks the companion
+   schedules: no roster brand split across two spellings in the platform's
+   entity or environment view, and every branded prompt returns the own
+   brand as found. A failure is a missing alias to add before the first
+   Analyse, never a mention figure to report.
 
 Platform mechanics: see §12 in the platform companion.
 
