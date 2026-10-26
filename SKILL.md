@@ -1,7 +1,7 @@
 ---
-name: "ai-visibility-tracking-strategy-builder"
+name: ai-visibility-tracking-strategy-builder
 description: 'Build or refine an AI visibility tracking strategy — the prompt set, grouping structure, brand roster and reporting split that measure how a brand appears in ChatGPT, Gemini, Perplexity, AI Overviews and similar — on any AI visibility monitoring platform. Runs as an iterative loop (Intake → Strategy → Write → Analyse) with an optional stakeholder presentation once the strategy has stabilised. Load whenever the user mentions AI visibility, GEO (generative engine optimisation), AI brand monitoring, prompt tracking, "what prompts should we track", "how are we showing up in ChatGPT / Gemini / Perplexity", AI mention tracking, a prompt set for an AI monitoring tool, or a tracking strategy review. This is the platform-agnostic core of a skill family: load it together with the companion for the platform in use (Peec AI: `peec-ai-tracking-strategy-builder`; SISTRIX: `sistrix-tracking-strategy-builder`; searchVIU: `searchviu-tracking-strategy-builder`), or alone for any other tool.'
-version: 1.6.0
+version: 1.6.1
 license: CC-BY-4.0
 origin: https://github.com/rebelytics/ai-visibility-tracking-strategy-builder
 maintainer: Eoghan Henn / rebelytics (eoghan@rebelytics.com)
