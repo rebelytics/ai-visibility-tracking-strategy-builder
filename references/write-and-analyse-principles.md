@@ -235,7 +235,7 @@ Platform mechanics: see §13 in the platform companion.
 
 ### 13.5 Per-answer share, not per-question presence
 
-**A per-question ever-flag and a per-answer share are different metrics, and
+**A per-question presence flag and a per-answer share are different metrics, and
 the first is an upper bound on the second.** Most platforms run each prompt
 many times over a window — several engines × several runs — so every prompt
 carries two very different numbers:
@@ -310,6 +310,14 @@ from the intake state's write-wave timestamps (§7) that no prompt creation,
 reframe or deletion landed inside the window. If one did, truncate to the
 longest stable sub-window or use snapshot metrics, and document the wave
 dates alongside the finding.
+
+**A promote or drop decision keyed on a presence flag reads the flag's
+series, not its current value.** Record the flag per prompt per run in the
+loop state (§7), and propose the move only when at least the last two
+readings agree. A flag scoped to a window the platform does not disclose can
+flip between two reads of the same prompt. A single reading then promotes on
+noise as readily as on signal, at the point where the move is least
+reversible.
 
 **Carry-forward claim re-verification.** Findings files are working memory,
 not source of truth. Label every claim consumed from a prior findings file:
