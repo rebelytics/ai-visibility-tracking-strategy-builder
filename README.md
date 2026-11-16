@@ -2,6 +2,8 @@
 
 Open-source, platform-agnostic **methodology skill** for building or refining an AI visibility tracking strategy — the prompt set, grouping structure, brand roster and reporting split that measure how a brand appears in ChatGPT, Gemini, Perplexity, AI Overviews and similar — on any AI visibility monitoring platform. Load it into any MCP-capable AI agent (Claude, Cursor, Codex, n8n, etc.).
 
+Part of the [Open Skill Library](https://github.com/rebelytics/one-skill-to-rule-them-all/blob/main/OPEN-SKILL-LIBRARY.md), the open-source agent skills maintained with Task Observer.
+
 ## What this skill does
 
 Runs an iterative loop — **Intake → Strategy → Write → Analyse** — that produces concrete configuration changes and findings each pass, with an optional stakeholder presentation once the strategy has stabilised. Intake uses three rings (automated tools, a baseline path that always works, a batched user ask); Strategy outputs prescriptive recommendations with explicit override callouts; Write goes through the platform's API or a validated import file; Analyse reads the platform's data and feeds the next loop.

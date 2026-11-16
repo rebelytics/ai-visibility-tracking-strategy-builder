@@ -558,6 +558,21 @@ to handle what arrives:
    informational ground the brand already owns, so the strategy can
    answer whether owned authority converts — otherwise a
    commercial-only set reads as a flat near-zero line.
+
+   **Compare these queries with the prompt set by subject, never by
+   string.** Grounding queries, and the opportunity queries some reports
+   list beside them (queries where other sites are cited and the brand is
+   not), are short lookups the engine issues. Tracked prompts are the
+   conversational questions users ask, so the two rarely share a string
+   even where they share a subject. Map each query to its subject (the
+   standard, regulation, product or service it names). Gate the subjects
+   against what the brand actually offers, because opportunity lists are
+   scoped by topic, not by relevance. Then compare the gated subjects with
+   the subjects the prompt set covers. A subject with no prompt is a
+   candidate only if the brand sells it. Invented example: for a
+   cycling-tour operator, the lookup "alpine pass gradients" and the prompt
+   "Which guided tours cross the Alps by bike?" share a subject though no
+   string matches.
 4. **Web analytics revenue data** — GA4, Adobe, Matomo, Piwik Pro.
    Landing-page revenue over 12 months, per market, by category.
    **Strongest commercial signal for e-commerce**, because it measures
