@@ -1,6 +1,6 @@
 # Pattern library (§11)
 
-Part of the **ai-visibility-tracking-strategy-builder** skill (CC BY 4.0 — Eoghan Henn / [rebelytics.com](https://rebelytics.com)). Section numbers are global across the skill family — the section map in `SKILL.md` says where each § lives; platform companions extend some sections with their own "Peec implementation" / "Sistrix implementation" parts.
+Part of the **ai-visibility-tracking-strategy-builder** skill (CC BY 4.0 — Eoghan Henn and contributors). Section numbers are global across the skill family — the section map in `SKILL.md` says where each § lives; platform companions extend some sections with their own "Peec implementation" / "Sistrix implementation" parts.
 
 **Load trigger:** Skim the contents list during every Strategy and every Analyse step; read any pattern whose symptom matches the project. Do not skip the skim — patterns fire on recognition. Where a pattern's fix names a platform mechanism, read the matching "§11.N — <platform> implementation" part in the platform companion before executing it.
 

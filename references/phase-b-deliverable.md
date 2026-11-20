@@ -1,6 +1,6 @@
 # Phase B — Stakeholder deliverable (§14)
 
-Part of the **ai-visibility-tracking-strategy-builder** skill (CC BY 4.0 — Eoghan Henn / [rebelytics.com](https://rebelytics.com)). Section numbers are global across the skill family — the section map in `SKILL.md` says where each § lives; platform companions extend some sections with their own "Peec implementation" / "Sistrix implementation" parts.
+Part of the **ai-visibility-tracking-strategy-builder** skill (CC BY 4.0 — Eoghan Henn and contributors). Section numbers are global across the skill family — the section map in `SKILL.md` says where each § lives; platform companions extend some sections with their own "Peec implementation" / "Sistrix implementation" parts.
 
 **Load trigger:** Read when Phase B is triggered, offered, or being timed. Two exceptions fire outside Phase B: run the §14.5 proactive timing check-in at each loop close, whether or not Phase B is underway; and read §14.16 before the Write phase on any platform that has no write API (the configuration deliverable replaces the write step there).
 

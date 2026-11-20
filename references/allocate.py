@@ -2,7 +2,7 @@
 """Damped revenue-weighted prompt allocation for an AI visibility prompt set.
 
 Part of the ai-visibility-tracking-strategy-builder skill (CC BY 4.0 — Eoghan
-Henn / rebelytics.com). Implements the core §9.1.2 method on any platform.
+Henn and contributors). Implements the core §9.1.2 method on any platform.
 
 Why damping rather than a cap: pure revenue weighting lets one cluster
 swallow the budget; a hard cap flattens exactly the cross-market differences

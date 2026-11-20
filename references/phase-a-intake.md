@@ -1,6 +1,6 @@
 # Phase A — Intake (§3.8–3.10, §8)
 
-Part of the **ai-visibility-tracking-strategy-builder** skill (CC BY 4.0 — Eoghan Henn / [rebelytics.com](https://rebelytics.com)). Section numbers are global across the skill family — the section map in `SKILL.md` says where each § lives; platform companions extend some sections with their own "Peec implementation" / "Sistrix implementation" parts.
+Part of the **ai-visibility-tracking-strategy-builder** skill (CC BY 4.0 — Eoghan Henn and contributors). Section numbers are global across the skill family — the section map in `SKILL.md` says where each § lives; platform companions extend some sections with their own "Peec implementation" / "Sistrix implementation" parts.
 
 **Load trigger:** Read this file in full at the start of every Intake step, before asking the user for anything. §3.8–3.10 lead the file because intake shortcuts are the strongest failure mode this skill has seen. Then read the platform companion's §8 part before touching the platform's project state — it holds the API/MCP reads, the known gaps in what the platform exposes, and the fanout-harvest mechanics.
 

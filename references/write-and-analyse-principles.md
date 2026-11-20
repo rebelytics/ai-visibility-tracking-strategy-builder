@@ -1,6 +1,6 @@
 # Write and Analyse — platform-agnostic principles (§12, §13)
 
-Part of the **ai-visibility-tracking-strategy-builder** skill (CC BY 4.0 — Eoghan Henn / [rebelytics.com](https://rebelytics.com)). Section numbers are global across the skill family — the section map in `SKILL.md` says where each § lives; platform companions extend some sections with their own "Peec implementation" / "Sistrix implementation" parts.
+Part of the **ai-visibility-tracking-strategy-builder** skill (CC BY 4.0 — Eoghan Henn and contributors). Section numbers are global across the skill family — the section map in `SKILL.md` says where each § lives; platform companions extend some sections with their own "Peec implementation" / "Sistrix implementation" parts.
 
 **Load trigger:** Read before the first Write of a loop and at the start of every Analyse step; then load the platform companion's §12 (before executing any write wave) and §13 (before pulling any report). This file holds the principles every companion relies on; the companion holds the mechanics — wave order, call patterns, field names, platform-specific analyses. Section numbers below are the source numbers; a companion's §12.x / §13.x extends the principle of the same number.
 

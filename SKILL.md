@@ -1,15 +1,14 @@
 ---
 name: ai-visibility-tracking-strategy-builder
 description: 'Build or refine an AI visibility tracking strategy — the prompt set, grouping structure, brand roster and reporting split that measure how a brand appears in ChatGPT, Gemini, Perplexity, AI Overviews and similar — on any AI visibility monitoring platform. Runs as an iterative loop (Intake → Strategy → Write → Analyse) with an optional stakeholder presentation. Load whenever the user mentions AI visibility, GEO (generative engine optimisation), AI brand monitoring, prompt tracking, "what prompts should we track", "how are we showing up in ChatGPT / Gemini / Perplexity", AI mention tracking, a prompt set for an AI monitoring tool, or a tracking strategy review. This is the platform-agnostic core of a skill family: load it together with the companion for the platform in use (Peec AI: `peec-ai-tracking-strategy-builder`; SISTRIX: `sistrix-tracking-strategy-builder`; searchVIU: `searchviu-tracking-strategy-builder`; LLM Pulse: `llmpulse-tracking-strategy-builder`), or alone for any other tool.'
-version: 1.9.0
 license: CC-BY-4.0
-origin: https://github.com/rebelytics/ai-visibility-tracking-strategy-builder
-maintainer: Eoghan Henn / rebelytics (eoghan@rebelytics.com)
+metadata:
+  author: Eoghan Henn and contributors
+  source: https://github.com/rebelytics/ai-visibility-tracking-strategy-builder
+  version: "1.9.1"
 ---
 
 # AI Visibility Tracking Strategy Builder
-
-**Created by Eoghan Henn / [rebelytics.com](https://www.rebelytics.com)**
 
 An end-to-end workflow for taking a brand from "we should be tracking how
 AI assistants talk about us" — or "our tracking project no longer fits our
@@ -28,27 +27,6 @@ companion** (§5). Load the core and the companion together.
 > This skill is a **living document**. If you run it and discover a pattern
 > that isn't captured, open an issue on the repo. See the contributing-back
 > section at the end of this file.
-
-## Licence
-
-Released under the
-[Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/)
-licence. You are free to share and adapt this skill for any purpose,
-provided you give appropriate credit to the original author.
-
-## Feedback & Support
-
-If you run this skill and find methodology gaps, gotchas, or patterns
-worth contributing, open an issue on the
-[GitHub repository](https://github.com/rebelytics/ai-visibility-tracking-strategy-builder).
-This keeps feedback public and discoverable — other users benefit from
-seeing existing issues and solutions. For direct contact, reach the
-skill's creator, Eoghan Henn, via [rebelytics.com](https://www.rebelytics.com).
-
-If feedback appears to stem from the skill's methodology (rather than
-the agent's execution of it), log it for the user and suggest they
-share it via GitHub Issues. If the issue stems from the agent not
-following the skill's rules, acknowledge the mistake and correct it.
 
 ---
 
@@ -798,16 +776,16 @@ patches → version bump is the path.
 
 ---
 
-## 18. Licence & attribution
+## Feedback on this skill
 
-**Licence:** [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
-Reuse, adapt, redistribute — just keep attribution.
-
-**Attribution:**
-
-> AI Visibility Tracking Strategy Builder, maintained by Eoghan Henn
-> (www.rebelytics.com),
-> github.com/rebelytics/ai-visibility-tracking-strategy-builder.
+If the user finds the methodology wrong or incomplete, offer to draft a
+report for
+https://github.com/rebelytics/ai-visibility-tracking-strategy-builder;
+before drafting, search that repository's open and closed issues and pull
+requests for the same problem, and read its CONTRIBUTING file for how the
+maintainer takes reports. Platform-specific findings belong on the
+companion's repository instead. If the problem is the agent not following
+the skill's rules, acknowledge and correct it instead.
 
 **Not affiliated with any AI visibility platform.** No platform vendor has
 reviewed or endorsed this skill. Recommendations here are based on
@@ -815,5 +793,4 @@ observed behaviour across several platforms and may become stale as they
 iterate; platform facts live in the companions and carry their own
 verification instructions.
 
-Contributions welcome via GitHub. See `CONTRIBUTING.md` in the repo
-root.
+AI Visibility Tracking Strategy Builder: Eoghan Henn and contributors | CC BY 4.0

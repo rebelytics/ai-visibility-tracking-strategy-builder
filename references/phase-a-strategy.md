@@ -1,6 +1,6 @@
 # Phase A — Strategy (§9–§10)
 
-Part of the **ai-visibility-tracking-strategy-builder** skill (CC BY 4.0 — Eoghan Henn / [rebelytics.com](https://rebelytics.com)). Section numbers are global across the skill family — the section map in `SKILL.md` says where each § lives; platform companions extend some sections with their own "Peec implementation" / "Sistrix implementation" parts.
+Part of the **ai-visibility-tracking-strategy-builder** skill (CC BY 4.0 — Eoghan Henn and contributors). Section numbers are global across the skill family — the section map in `SKILL.md` says where each § lives; platform companions extend some sections with their own "Peec implementation" / "Sistrix implementation" parts.
 
 **Load trigger:** Read before drafting or revising any strategy recommendation, and again before the strategy sign-off. Load the platform companion's `phase-a-strategy.md` alongside it before writing any recommendation that names a field, a tag string, a plan tier or a write operation — the companion holds those. §10 applies to existing projects only.
 

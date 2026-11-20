@@ -1,6 +1,6 @@
 # Quality gates (§15)
 
-Part of the **ai-visibility-tracking-strategy-builder** skill (CC BY 4.0 — Eoghan Henn / [rebelytics.com](https://rebelytics.com)). Section numbers are global across the skill family — the section map in `SKILL.md` says where each § lives; platform companions extend some sections with their own "Peec implementation" / "Sistrix implementation" parts.
+Part of the **ai-visibility-tracking-strategy-builder** skill (CC BY 4.0 — Eoghan Henn and contributors). Section numbers are global across the skill family — the section map in `SKILL.md` says where each § lives; platform companions extend some sections with their own "Peec implementation" / "Sistrix implementation" parts.
 
 **Load trigger:** Read at every phase transition. The relevant gate must pass before §12 Write, §13 Analyse, or §14 Phase B begins, and the §15.4 merged-set gates must pass before any prompt set is written to the platform or delivered as an import file — a failed gate item blocks the transition. Read the matching "§15.N — <platform> implementation" part in the platform companion at the same time; it names the tool calls and fields through which each gate is checked on that platform.
 
